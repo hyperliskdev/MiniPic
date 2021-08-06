@@ -1,12 +1,9 @@
 package dev.hyperlisk.services;
 
-import com.mongodb.Block;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.gridfs.GridFSBucket;
 import com.mongodb.client.gridfs.GridFSBuckets;
 import com.mongodb.client.gridfs.GridFSDownloadStream;
-import com.mongodb.client.gridfs.GridFSFindIterable;
-import com.mongodb.client.gridfs.model.GridFSFile;
 import com.mongodb.client.gridfs.model.GridFSUploadOptions;
 import dev.hyperlisk.models.Picture;
 import org.bson.Document;
@@ -15,11 +12,8 @@ import org.bson.types.ObjectId;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.ws.rs.core.Response;
-import java.io.FileOutputStream;
 import java.io.InputStream;
-import java.util.Objects;
 
-import static com.mongodb.client.model.Filters.eq;
 
 @ApplicationScoped
 public class DatabaseService {

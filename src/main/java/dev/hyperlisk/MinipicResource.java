@@ -3,7 +3,6 @@ package dev.hyperlisk;
 import dev.hyperlisk.models.Picture;
 import dev.hyperlisk.services.DatabaseService;
 import io.quarkus.qute.CheckedTemplate;
-import io.quarkus.qute.Template;
 import io.quarkus.qute.TemplateInstance;
 import org.jboss.resteasy.annotations.providers.multipart.MultipartForm;
 
@@ -11,7 +10,6 @@ import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.io.InputStream;
 
 @Path("/minipic")
 public class MinipicResource {
@@ -26,7 +24,7 @@ public class MinipicResource {
     }
 
     @GET
-    @Path("/upload")
+    @Path("/upload/img")
     @Produces(MediaType.TEXT_PLAIN)
     public TemplateInstance getUpload() {
         return Templates.upload();
@@ -35,11 +33,10 @@ public class MinipicResource {
     @GET
     @Path("/{title}")
     @Produces(MediaType.TEXT_HTML)
-    public TemplateInstance get(@PathParam("title") String imageTitle) {
+    public byte[] get(@PathParam("title") String imageTitle) {
 
+        return dbService.getImage(imageTitle);
 
-
-        return Templates.picture(dbService.getImage(imageTitle));
     }
 
     @POST
