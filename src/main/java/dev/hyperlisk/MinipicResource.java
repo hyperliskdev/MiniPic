@@ -23,6 +23,7 @@ public class MinipicResource {
         public static native TemplateInstance upload();
     }
 
+    // Sends the client to upload any image
     @GET
     @Path("/upload/img")
     @Produces(MediaType.TEXT_PLAIN)
@@ -30,6 +31,9 @@ public class MinipicResource {
         return Templates.upload();
     }
 
+
+
+    // returns the raw byte data from a requested image
     @GET
     @Path("/{title}")
     @Produces(MediaType.TEXT_HTML)
@@ -39,6 +43,7 @@ public class MinipicResource {
 
     }
 
+    // The post that sends imagedata and stuff to the database service
     @POST
     @Path("/upload")
     @Consumes(MediaType.MULTIPART_FORM_DATA)

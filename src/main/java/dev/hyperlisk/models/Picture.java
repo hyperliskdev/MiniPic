@@ -10,18 +10,19 @@ import javax.ws.rs.core.MediaType;
 import java.io.InputStream;
 import java.util.Objects;
 
+
+// Picture struct
 public class Picture {
 
+    // MultipartFormData imageData
     @FormParam("imageData")
     @PartType(MediaType.APPLICATION_OCTET_STREAM)
     public InputStream imageData;
 
+    // MultipartFormData imageTitle
     @FormParam("imageTitle")
     @PartType(MediaType.TEXT_PLAIN)
     public String imageTitle;
-
-
-
 
     public Picture(String imageTitle) {
         this.imageTitle = imageTitle;
@@ -29,12 +30,4 @@ public class Picture {
 
     public Picture() {}
 
-
-    @Override
-    public String toString() {
-        return "Picture{" +
-                "imageData=" + imageData +
-                ", imageTitle='" + imageTitle + '\'' +
-                '}';
-    }
 }

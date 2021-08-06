@@ -14,15 +14,19 @@ import javax.inject.Inject;
 import javax.ws.rs.core.Response;
 import java.io.InputStream;
 
+// Main Database Service
 
 @ApplicationScoped
 public class DatabaseService {
 
+    // MongoDB Client
     @Inject
     MongoClient mongoClient;
 
+    // Image bucket
     private GridFSBucket fsBucket;
 
+    // Uploads a given image to the specified image bucket
     public Response add(Picture picture) {
         try {
             InputStream inputStream = picture.imageData;
@@ -40,6 +44,7 @@ public class DatabaseService {
         return Response.ok().build();
     }
 
+    // Returns the raw image data of any given image.
     public byte[] getImage(String imageTitle) {
 
         GridFSDownloadStream downloadStream = getFileBucket().openDownloadStream(imageTitle);
@@ -53,6 +58,7 @@ public class DatabaseService {
     }
 
 
+    // Singleton'd because safe t
     public GridFSBucket getFileBucket() {
         if(fsBucket == null) {
             fsBucket = GridFSBuckets.create(mongoClient.getDatabase("minipic"));
